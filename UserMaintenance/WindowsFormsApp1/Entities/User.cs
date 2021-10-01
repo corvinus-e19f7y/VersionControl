@@ -20,7 +20,7 @@ namespace WindowsFormsApp1.Entities
                 return string.Format(
                     "{0} {1}",
                     LastName,
-                    FullName); 
+                    Firstname); 
             }
         }
 
