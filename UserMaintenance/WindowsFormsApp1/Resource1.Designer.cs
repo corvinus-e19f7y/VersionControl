@@ -70,7 +70,7 @@ namespace WindowsFormsApp1 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to KeresztNév.
+        ///   Looks up a localized string similar to UtóNév.
         /// </summary>
         internal static string FirstName {
             get {
