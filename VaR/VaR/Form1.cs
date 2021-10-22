@@ -17,7 +17,7 @@ namespace VaR
         PortfolioEntities context = new PortfolioEntities();
         List<Tick> Ticks;
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
-
+        List<decimal> nyereségekRendezve;
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace VaR
                 Console.WriteLine(i + " " + ny);
             }
 
-            var nyereségekRendezve = (from x in Nyereségek
+             nyereségekRendezve = (from x in Nyereségek
                                       orderby x
                                       select x)
                                         .ToList();
@@ -69,6 +69,25 @@ namespace VaR
             return value;
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath;
+
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+            
+            using(var sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+            {
+                sw.WriteLine("Időszak;Nyereség");
+                for (int i = 0; i < nyereségekRendezve.Count(); i++)
+                {
+                    sw.WriteLine(string.Format(
+                        "{0};{1}",
+                        i,
+                        nyereségekRendezve[i]
+                        ));
+                }
+            }
+        }
     }
 }
